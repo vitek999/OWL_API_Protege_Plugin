@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?eclipse version="3.0"?>
+
+<plugin>
+
+	<!-- Tabs -->
+	
+	<extension id="ExampleWorkspaceTab" point="org.protege.editor.core.application.WorkspaceTab">
+		<label value="ORM-OWL"/>
+		<class value="org.protege.editor.owl.ui.OWLWorkspaceViewsTab"/>
+		<index value="X"/>
+		<editorKitId value="OWLEditorKit"/>
+		<defaultViewConfigFileName value="viewconfig-exampletab.xml"/>
+   </extension>
+
+	<!-- View -->
+
+	<extension id="ExampleViewComponent" point="org.protege.editor.core.application.ViewComponent">
+		<label value="Example view component" />
+		<class value="edu.stanford.bmir.protege.examples.view.ExampleViewComponent" />
+		<headerColor value="@org.protege.ontologycolor"/>
+		<category value="@org.protege.ontologycategory" />
+	</extension>
+    
+</plugin>

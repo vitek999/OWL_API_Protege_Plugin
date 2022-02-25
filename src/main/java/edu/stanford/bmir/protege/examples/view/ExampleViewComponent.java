@@ -1,7 +1,10 @@
 package edu.stanford.bmir.protege.examples.view;
 
 import java.awt.BorderLayout;
+
+import edu.stanford.bmir.protege.examples.model.ORM_Reasoner;
 import org.protege.editor.owl.ui.view.AbstractOWLViewComponent;
+import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.vstu.nodelinkdiagram.DiagramModel;
@@ -26,6 +29,14 @@ public class ExampleViewComponent extends AbstractOWLViewComponent {
         log.info("SOUT: AAAAA: " + node);
         add(ORM2OWL2MapperPanelComponent, BorderLayout.CENTER);
         log.info("Example View Component initialized");
+
+        ORM_Reasoner reasoner = new ORM_Reasoner(getOWLModelManager());
+        reasoner.getSubAxioms();
+        try {
+            reasoner.checkOntology();
+        } catch (OWLOntologyCreationException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 	@Override

@@ -40,8 +40,8 @@
 Скриншот окна подключения maven репозитория
 ![images/repository-connect-image.png](images/repository-connect-image.png)
 
-## Где искать акутальные версии библиотек Node-Link-Diagram и orm-diagram-model
-Акутальные версии можно всегда посмотреть на странице space для каждой из библиотек: 
+## Где искать актуальные версии библиотек Node-Link-Diagram и orm-diagram-model
+Актуальные версии можно всегда посмотреть на странице space для каждой из библиотек: 
 * [Node-Link-Diagram](https://noskin-test.jetbrains.space/p/orm-2-editor/packages/maven/orm2editor/org.vstu/Node-Link-Diagram)
 * [orm-diagram-model](https://noskin-test.jetbrains.space/p/orm-2-editor/packages/maven/orm2editor/org.vstu/orm-diagram-model)
 

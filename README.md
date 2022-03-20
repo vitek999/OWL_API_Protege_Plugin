@@ -46,5 +46,16 @@
 * [orm-diagram-model](https://noskin-test.jetbrains.space/p/orm-2-editor/packages/maven/orm2editor/org.vstu/orm-diagram-model)
 
 ## Публикация новых версий Node-Link-Diagram и orm-diagram-model в space
+
+Исходный код для библиотек доступен по ссылкам:
+* [Node-Link-Diagram](https://github.com/ORM2-OWL2-Mapping/Node-Link-Diagram-Library) 
+* [orm-diagram-model](https://github.com/ORM2-OWL2-Mapping/ORM2-Diagram-Model) 
+
+
+Шаги для публикации библиотеки в space repository:
 * Необходимо поднять версию библиотеки в файле `pom.xml` исходников библиотеки в теге `version`
+  * Для `Node-Link-Diagram` тут: [тык](https://github.com/ORM2-OWL2-Mapping/Node-Link-Diagram-Library/blob/master/pom.xml#L9)
+  * Для `orm-diagram-model` тут: [тык](https://github.com/ORM2-OWL2-Mapping/ORM2-Diagram-Model/blob/master/pom.xml#L9)
 * Опубликовать библиотеку с помощью команды `mvn deploy`
+* Перед публикацией `orm-diagram-model` необходимо также обновить зависимость на `node-link-diagram` в файле `pom.xml`. Тут: [тык](https://github.com/ORM2-OWL2-Mapping/ORM2-Diagram-Model/blob/master/pom.xml#L34)
+* Обновить версии библиотек на опубликованные для плагина в pom xml: [тут](https://github.com/ORM2-OWL2-Mapping/OWL_API_Protege_Plugin/blob/master/pom.xml#L42) и [тут](https://github.com/ORM2-OWL2-Mapping/OWL_API_Protege_Plugin/blob/master/pom.xml#L36)

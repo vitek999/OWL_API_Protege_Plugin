@@ -47,6 +47,18 @@
 			<version>5.8.2</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>net.sourceforge.owlapi</groupId>
+			<artifactId>owlexplanation</artifactId>
+			<version>2.0.1</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>net.sourceforge.owlapi</groupId>
+			<artifactId>telemetry</artifactId>
+			<version>2.0.0</version>
+			<scope>compile</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -85,7 +97,7 @@
 							org.protege.editor.owl.*;version="5.0.0", <!-- equivalent to [5.0.0,infinity) -->
 							*
 						</Import-Package>
-						<Embed-Dependency>orm-diagram-model,Node-Link-Diagram;scope=compile|runtime</Embed-Dependency>
+						<Embed-Dependency>orm-diagram-model,Node-Link-Diagram,owlexplanation,telemetry;scope=compile|runtime</Embed-Dependency>
 						<Embed-Directory>lib</Embed-Directory>
 					</instructions>
 				</configuration>

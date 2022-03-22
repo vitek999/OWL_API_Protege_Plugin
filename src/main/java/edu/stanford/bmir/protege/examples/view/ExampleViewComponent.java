@@ -30,7 +30,8 @@ public class ExampleViewComponent extends AbstractOWLViewComponent {
         add(ORM2OWL2MapperPanelComponent, BorderLayout.CENTER);
         log.info("Example View Component initialized");
 
-        ORM_Reasoner reasoner = new ORM_Reasoner(getOWLModelManager());
+
+        ORM_Reasoner reasoner = new ORM_Reasoner(getOWLModelManager(), getOWLEditorKit());
         reasoner.getSubAxioms();
         try {
             reasoner.checkOntology();

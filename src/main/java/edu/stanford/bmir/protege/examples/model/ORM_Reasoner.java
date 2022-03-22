@@ -1,9 +1,11 @@
 package edu.stanford.bmir.protege.examples.model;
 
+import edu.stanford.bmir.protege.examples.explanation.JustificationManager;
+import edu.stanford.bmir.protege.examples.explanation.WorkbenchManager;
+import org.protege.editor.core.ProtegeManager;
+import org.protege.editor.owl.OWLEditorKit;
 import org.protege.editor.owl.model.OWLModelManager;
 import org.protege.editor.owl.ui.explanation.ExplanationManager;
-import org.protege.editor.owl.ui.explanation.ExplanationResult;
-import org.protege.editor.owl.ui.explanation.ExplanationService;
 import org.semanticweb.owlapi.model.*;
 import org.semanticweb.owlapi.reasoner.InferenceType;
 import org.semanticweb.owlapi.reasoner.Node;
@@ -13,16 +15,19 @@ import org.semanticweb.owlapi.util.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 public class ORM_Reasoner {
-    private OWLModelManager modelManager; // Встроенный менеджер онтологии
+    private final OWLModelManager modelManager; // Встроенный менеджер онтологии
+    private final OWLEditorKit editorKit;
     private static final Logger log = LoggerFactory.getLogger(ORM_Reasoner.class);
 
-    public ORM_Reasoner(OWLModelManager modelManager) {
+    public ORM_Reasoner(OWLModelManager modelManager, OWLEditorKit editorKit) {
         this.modelManager = modelManager;
+        this.editorKit = editorKit;
     }
 
     // Проверка работы с reasoner
@@ -123,10 +128,22 @@ public class ORM_Reasoner {
             OWLClassAxiom axiom = axioms.stream().findFirst().get();
             log.info("has explanation: " + explanationManager.hasExplanation(axiom));
 
-            ExplanationService explanationService = explanationManager.getExplainers().stream().findFirst().get();
-            ExplanationResult result = explanationService.explain(axiom);
-            log.info("plugin id of explanation: " + explanationService.getPluginId());
-            log.info("explanation: " + result.toString());
+
+            if (explanationManager.hasExplanation(axiom)) {
+                JFrame workspaceFrame = ProtegeManager.getInstance().getFrame(editorKit.getWorkspace());
+                JustificationManager justificationManager = JustificationManager.getExplanationManager(workspaceFrame, modelManager);
+                WorkbenchManager workbenchManager = new WorkbenchManager(justificationManager, axiom);
+//                System.out.println(workbenchManager.getJustifications(axiom));
+//                Set<Explanation<OWLAxiom>> justifications = workbenchManager.getJustifications(axiom);
+//                justifications.forEach(a -> a.getAxioms().forEach(b -> System.out.println("explanation axiom: " + b)));
+                log.info("Count of justifications: " + workbenchManager.getJustificationCount(axiom));
+                workbenchManager.getJustifications(axiom).forEach(a -> a.getAxioms().forEach(b -> log.info("explanation axiom: " + b)));
+            }
+
+//            ExplanationService explanationService = explanationManager.getExplainers().stream().findFirst().get();
+//            ExplanationResult result = explanationService.explain(axiom);
+//            log.info("plugin id of explanation: " + explanationService.getPluginId());
+//            log.info("explanation: " + result.toString());
             // log.info("has explanation: " + modelManager.getExplanationManager().handleExplain()
         }
 
